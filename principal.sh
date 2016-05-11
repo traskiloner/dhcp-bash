@@ -8,6 +8,8 @@ if [ "$EUID" != "0" ]
 then
 	echo "Debe ejecutar este script como root"
 else
+	echo "Para un correcto funcionamiento se debe ejecutar desde el directorio de su extracción"
+	echo
 	echo "Menú para la configuración de un servidor DHCP:"
 	echo
 
@@ -25,6 +27,7 @@ else
 		in
 		"1")
 			echo "Ha elegido instalar un servidor DHCP"
+			./comprobacion.sh
 		;;
 		"2")
 			echo "Ha elegido configurar el servidor DHCP"
@@ -37,7 +40,9 @@ else
 			repetir=0
 		;;
 		*)
+			echo
 			echo "No ha introducido un valor correcto"
+			echo
 		esac
 	done
 fi
