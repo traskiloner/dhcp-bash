@@ -1,6 +1,8 @@
 #!/bin/bash
 
 #Comprobar si hay internet:
+echo "Comprobando si hay conexion"
+echo
 
 if ping -c3 google.com &>/dev/null;
 then
