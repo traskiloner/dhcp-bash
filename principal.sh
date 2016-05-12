@@ -31,9 +31,11 @@ else
 		;;
 		"2")
 			echo "Ha elegido configurar el servidor DHCP"
+			./configuracion.sh
 		;;
 		"3")
 			echo "Ha elegido comproba el estado del servidor DHCP"
+			./estados.sh
 		;;
 		"4")
 			echo "¡Hasta pronto!"

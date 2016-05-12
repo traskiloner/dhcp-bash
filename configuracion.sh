@@ -5,6 +5,10 @@ correcto=0
 #Comprobación de que está instalado isc-server-dhcp
 ./comprobacion.sh
 
+echo
+echo "Debe tener asignada una IP estática sobre la tarjeta de red que ofrezca DHCP"
+echo
+
 # Para ver las tarjetas de red disponibles
 tarjetas=$(ip l | grep 'eth[0-9]' | cut -d : -f 2)
 
