@@ -1,10 +1,29 @@
 #!/bin/bash
+distro=$(lsb_release -a | grep -i Release | cut -d : -f 2)
+
+if [[ $distro =~ '^8*' ]]
+then
+#debian jessie
+	detener='systemctl stop isc-dhcp-server'
+	reiniciar='systemctl restart isc-dhcp-server'
+	iniciar='systemctl start isc-dhcp-server'
+	estado='systemctl status isc-dhcp-server'
+
+elif [[ $distro =~ '^7*' ]]
+then
+#debian wheezy
+        detener='service isc-dhcp-server stop'
+        reiniciar='service isc-dhcp-server restart'
+        iniciar='service isc-dhcp-server start'
+        estado='service isc-dhcp-server status'
+fi
+
 if [[ $1 ]]
 then
 	if [[ "$1" == "reiniciar" ]]
 	then
-#		systemctl restart isc-dhcp-server.service
-		service isc-dhcp-server restart
+		echo "Reiniciando servicio"
+		$reiniciar
 	fi
 fi
 
@@ -27,26 +46,22 @@ do
                 "1")
                         echo "Iniciando servicio"
                         ./comprobacion.sh
-#			systemctl start isc-dhcp-server.service
-			service isc-dhcp-server start
+			$iniciar
                 ;;
                 "2")
                         echo "Deteniendo servicio"
 			./comprobacion.sh
-#			systemctl stop isc-dhcp-server.service
-			service isc-dhcp-server stop
+			$detener
                 ;;
                 "3")
                         echo "Comprobando servicio"
 			./comprobacion.sh
-#			systemctl status isc-dhcp-server.service
-			service isc-dhcp-server status
+			$estado
                 ;;
 		"4")
 			echo "Reiniciando servicio"
 			./comprobacion.sh
-#			systemctl restart isc-dhcp-server.service
-			service isc-dhcp-server restart
+			$reiniciar
 		;;
                 "5")
                         echo "¡Hasta pronto!"
