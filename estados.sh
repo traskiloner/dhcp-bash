@@ -1,7 +1,7 @@
 #!/bin/bash
-distro=$(lsb_release -r | grep -i Release | cut -d : -f 2)
+distro=$(lsb_release -r | grep -i Release | cut -d : -f 2 | cut -c 2)
 
-if [[ $distro =~ '^8*' ]]
+if [ $distro -eq 8 ]
 then
 #debian jessie
 	detener='systemctl stop isc-dhcp-server'
@@ -9,7 +9,7 @@ then
 	iniciar='systemctl start isc-dhcp-server'
 	estado='systemctl status isc-dhcp-server'
 
-elif [[ $distro =~ '^7*' ]]
+elif [ $distro -eq 7 ]
 then
 #debian wheezy
         detener='service isc-dhcp-server stop'
