@@ -1,5 +1,5 @@
 #!/bin/bash
-distro=$(lsb_release -a | grep -i Release | cut -d : -f 2)
+distro=$(lsb_release -r | grep -i Release | cut -d : -f 2)
 
 if [[ $distro =~ '^8*' ]]
 then
